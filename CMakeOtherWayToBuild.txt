@@ -1,0 +1,52 @@
+# Your project's CMakeLists.txt
+cmake_minimum_required(VERSION 3.10)
+project(simple_blog)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+
+# Find the main library library
+find_library(HAMZA_WEB_FRAMEWORK_LIB
+    NAMES hamza_web_framework
+    PATHS library/build/
+)
+
+# Find the HTTP server library
+find_library(HTTP_SERVER_LIB
+    NAMES http_server
+    PATHS library/build/libs/http-server/
+)
+
+# Find the socket library
+find_library(SOCKET_LIB
+    NAMES socket_lib
+    PATHS library/build/libs/http-server/libs/socket-lib/
+)
+
+# Find the HTML builder library
+find_library(HTML_BUILDER_LIB
+    NAMES html_builder
+    PATHS library/build/libs/html-builder/
+)
+
+# Find the JSON parser library
+find_library(JSON_PARSER_LIB
+    NAMES json_parser
+    PATHS library/build/libs/json/
+)
+
+# Include directories
+# target_include_directories(simple_blog PRIVATE library/)
+
+# Create executable
+add_executable(simple_blog main.cpp)
+
+# Link against all libraries
+target_link_libraries(simple_blog 
+    ${HAMZA_WEB_FRAMEWORK_LIB}
+    ${HTTP_SERVER_LIB}
+    ${SOCKET_LIB}
+    ${HTML_BUILDER_LIB}
+    ${JSON_PARSER_LIB}
+    pthread
+)
