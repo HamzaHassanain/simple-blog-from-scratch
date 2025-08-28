@@ -1,0 +1,23 @@
+{
+  "name": "blog-test-suite",
+  "version": "1.0.0",
+  "description": "Test suite for Simple Blog Application",
+  "main": "test_api.js",
+  "scripts": {
+    "test": "node test_api.js",
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0",
+    "cli-progress": "^3.12.0",
+    "colors": "^1.4.0"
+  },
+  "keywords": [
+    "test",
+    "api",
+    "blog",
+    "performance"
+  ],
+  "author": "Blog Test Suite",
+  "license": "MIT"
+}

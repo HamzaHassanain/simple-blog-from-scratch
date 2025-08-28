@@ -56,7 +56,6 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 endif()
 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fsanitize=address -g -O0")
 
 # Temporarily suppress all warnings for the library build
 set(CMAKE_CXX_FLAGS_BACKUP "${CMAKE_CXX_FLAGS}")
@@ -65,12 +64,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")  # Suppress all warnings for librar
 add_subdirectory("library")
 
 # Restore original flags for main project
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_BACKUP}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fsanitize=address -g -O0")
 
 file(GLOB SRC_FILES controllers/*.cpp  models/*.cpp middlewares/*.cpp routes/*.cpp)
 
 # Create executable
 add_executable(simple_blog main.cpp ${SRC_FILES})
+
+# Define ABSPATH preprocessor variable with the absolute path
+target_compile_definitions(simple_blog PRIVATE CPP_PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
 
 # Include directories for the library headers (this will also suppress warnings from headers)
 target_include_directories(simple_blog SYSTEM PRIVATE library/)
@@ -80,5 +82,5 @@ target_compile_options(simple_blog PRIVATE -Wno-comment -Wno-overloaded-virtual 
 
 # Link against the main library
 # The library's CMakeLists.txt handles linking all dependencies automatically
-target_link_libraries(simple_blog hamza_web_framework)
+target_link_libraries(simple_blog hh_web_framework)
 
