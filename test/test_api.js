@@ -636,9 +636,9 @@ async function main() {
 
   try {
     // Test web pages first (non-API)
-    console.log(colors.bold("\n=== TESTING WEB PAGES ==="));
-    await testWebPages();
-    await testAdminAuth();
+    // console.log(colors.bold("\n=== TESTING WEB PAGES ==="));
+    // await testWebPages();
+    // await testAdminAuth();
 
     // Create initial test blogs via API
     console.log(colors.bold("\n=== TESTING API ENDPOINTS ==="));

@@ -1,6 +1,6 @@
 
 #pragma once
-
+#include "../library/web-lib.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -84,7 +84,7 @@ public:
                 }
                 catch (const std::exception &e)
                 {
-                    std::cerr << "Error parsing blog ID: " << id_str << std::endl;
+                    hh_web::logger::error("Error parsing line: " + line + " - " + e.what());
                     continue;
                 }
             }

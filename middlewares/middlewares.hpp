@@ -25,7 +25,7 @@ hh_web::exit_code admin_auth(std::shared_ptr<hh_web::web_request> req, std::shar
     return hh_web::exit_code::CONTINUE;
 }
 
-hh_web::exit_code body_sanatizer_form_and_json(std::shared_ptr<hh_web::web_request> req, std::shared_ptr<hh_web::web_response> res)
+hh_web::exit_code check_body(std::shared_ptr<hh_web::web_request> req, std::shared_ptr<hh_web::web_response> res)
 {
     // Check for common XSS attack patterns
     const std::vector<std::string> xss_patterns = {
@@ -82,37 +82,52 @@ hh_web::exit_code body_sanatizer_form_and_json(std::shared_ptr<hh_web::web_reque
             for (const auto &pattern : xss_patterns)
             {
                 if (t.find(pattern) != std::string::npos)
+                {
+                    res->set_status(400, "Bad Request");
+                    res->send_text("Invalid input detected");
                     return hh_web::exit_code::EXIT;
+                }
             }
         if (SQL)
             for (const auto &pattern : sql_patterns)
             {
                 if (t == pattern)
+                {
+                    res->set_status(400, "Bad Request");
+                    res->send_text("Invalid input detected");
                     return hh_web::exit_code::EXIT;
+                }
             }
         if (CMD)
             for (const auto &pattern : cmd_patterns)
             {
                 if (t == pattern)
+                {
+                    res->set_status(400, "Bad Request");
+                    res->send_text("Invalid input detected");
                     return hh_web::exit_code::EXIT;
+                }
             }
-    }
 
-    // Check for unusual character sequences that might be encoded attacks
-    int consecutive_special_chars = 0;
-    for (char c : body)
-    {
-        if (c == '%' || c == '\\' || c == '+' || c == '&' || c == '<' || c == '>' || c == '=' || c == '"' || c == '\'')
+        // Check for unusual character sequences that might be encoded attacks
+        int consecutive_special_chars = 0;
+        for (char c : body)
         {
-            consecutive_special_chars++;
-            if (consecutive_special_chars > 5)
-                return hh_web::exit_code::EXIT;
-        }
-        else
-        {
-            consecutive_special_chars = 0;
+            if (c == '%' || c == '\\' || c == '+' || c == '&' || c == '<' || c == '>' || c == '=' || c == '"' || c == '\'')
+            {
+                consecutive_special_chars++;
+                if (consecutive_special_chars > 5)
+                {
+                    res->set_status(400, "Bad Request");
+                    res->send_text("Invalid input detected");
+                    return hh_web::exit_code::EXIT;
+                }
+            }
+            else
+            {
+                consecutive_special_chars = 0;
+            }
         }
     }
-
     return hh_web::exit_code::CONTINUE;
-}
+};

@@ -18,8 +18,8 @@ std::shared_ptr<hh_web::web_router<>> make_views_router()
 
     router->post("/admin/login", Route_V(admin_login_post_controller));
 
-    router->post("/admin/blogs/create", Route_V(admin_auth, body_sanatizer_form_and_json, create_blog_controller));
-    router->post("/admin/blogs/:id/edit", Route_V(admin_auth, body_sanatizer_form_and_json, update_blog_controller));
+    router->post("/admin/blogs/create", Route_V(admin_auth, check_body, create_blog_controller));
+    router->post("/admin/blogs/:id/edit", Route_V(admin_auth, check_body, update_blog_controller));
     router->delete_("/admin/blogs/:id/delete", Route_V(admin_auth, delete_blog_controller));
 
     return router;
@@ -32,8 +32,8 @@ std::shared_ptr<hh_web::web_router<>> make_apis_router()
     router->get("/api/blogs", Route_V(api_get_all_blogs_controller));
     router->get("/api/blogs/:id", Route_V(api_get_single_blog_controller));
 
-    router->post("/api/blogs", Route_V(api_auth_admin, body_sanatizer_form_and_json, api_create_blog_controller));
-    router->put("/api/blogs/:id", Route_V(api_auth_admin, body_sanatizer_form_and_json,api_update_blog_controller));
+    router->post("/api/blogs", Route_V(api_auth_admin, check_body, api_create_blog_controller));
+    router->put("/api/blogs/:id", Route_V(api_auth_admin, check_body, api_update_blog_controller));
     router->delete_("/api/blogs/:id", Route_V(api_auth_admin, api_delete_blog_controller));
 
     return router;
