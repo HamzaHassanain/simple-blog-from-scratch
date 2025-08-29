@@ -11,8 +11,8 @@ set(GIT_SUBMODULE_UPDATE_LATEST ON CACHE BOOL "Enable submodule updates" FORCE)
 
 
 # Disable submodule checking for all libraries
-set(GIT_SUBMODULE OFF CACHE BOOL "Disable submodule checking" FORCE)
-set(GIT_SUBMODULE_UPDATE_LATEST OFF CACHE BOOL "Disable submodule updates" FORCE)
+# set(GIT_SUBMODULE OFF CACHE BOOL "Disable submodule checking" FORCE)
+# set(GIT_SUBMODULE_UPDATE_LATEST OFF CACHE BOOL "Disable submodule updates" FORCE)
 
 # Find Git package for submodule handling
 find_package(Git QUIET)
