@@ -64,7 +64,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")  # Suppress all warnings for librar
 add_subdirectory("library")
 
 # Restore original flags for main project
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fsanitize=address -g -O0")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -fsanitize=address -g -O0")
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
 file(GLOB SRC_FILES controllers/*.cpp  models/*.cpp middlewares/*.cpp routes/*.cpp)
 
@@ -72,13 +73,14 @@ file(GLOB SRC_FILES controllers/*.cpp  models/*.cpp middlewares/*.cpp routes/*.c
 add_executable(simple_blog main.cpp ${SRC_FILES})
 
 # Define ABSPATH preprocessor variable with the absolute path
-target_compile_definitions(simple_blog PRIVATE CPP_PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
+target_compile_definitions(simple_blog PRIVATE CPP_PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}/")
 
 # Include directories for the library headers (this will also suppress warnings from headers)
 target_include_directories(simple_blog SYSTEM PRIVATE library/)
 
 # Add additional compiler flags to suppress warnings from library headers
-target_compile_options(simple_blog PRIVATE -Wno-comment -Wno-overloaded-virtual -Wno-reorder)
+
+# target_compile_options(simple_blog PRIVATE -Wno-comment -Wno-overloaded-virtual -Wno-reorder)
 
 # Link against the main library
 # The library's CMakeLists.txt handles linking all dependencies automatically

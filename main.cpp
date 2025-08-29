@@ -1,18 +1,22 @@
 
 #include "definentions.hpp"
-#include <bits/stdc++.h>
+#include <iostream>
 #include "library/web-lib.hpp"
 #include "views/views.hpp"
 #include "routes/routes.hpp"
 
 int main()
 {
+    
     try
     {
+		hh_socket::initialize_socket_library();
+
+
         int port = 8080;
         std::string host = "0.0.0.0";
-        hh_web::logger::absolute_path_to_logs = "/home/hamza/Documents/Learnings/Projects/simple-blog-from-scratch/logs/";
-        hh_web::logger::enabled_logging = true;
+        //hh_web::logger::absolute_path_to_logs = "/home/hamza/Documents/Learnings/Projects/simple-blog-from-scratch/logs/";
+        //hh_web::logger::enabled_logging = true;
         hh_http::config::MAX_BODY_SIZE = 1024 * 64;
         hh_http::config::MAX_HEADER_SIZE = 1024 * 4;
         hh_http::config::MAX_IDLE_TIME_SECONDS = std::chrono::seconds(5);
@@ -35,4 +39,8 @@ int main()
     {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+    
+	hh_socket::cleanup_socket_library();    
+	return 0;
 }
+

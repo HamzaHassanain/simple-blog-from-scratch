@@ -23,7 +23,7 @@ std::string index_view(const std::vector<Blog> &blogs = {})
 
     document doc;
 
-    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("/views/html/index.html");
+    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("views/html/index.html");
 
     std::string html;
 
@@ -47,7 +47,7 @@ std::string index_view(const std::vector<Blog> &blogs = {})
 
 std::string admin_login_view()
 {
-    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("/views/html/admin-login.html");
+    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("views/html/admin-login.html");
 
     std::string html;
 
@@ -65,7 +65,7 @@ std::string admin_dashboard_view(const std::vector<Blog> &blogs = {})
 {
     using namespace hh_html_builder;
 
-    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("/views/html/admin-dashboard.html");
+    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("views/html/admin-dashboard.html");
 
     std::string html;
 
@@ -111,7 +111,7 @@ std::string admin_edit_blog_view(const Blog &blog)
 
     document doc;
 
-    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("/views/html/admin-edit-blog.html");
+    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("views/html/admin-edit-blog.html");
 
     std::string html;
 
@@ -142,7 +142,7 @@ std::string get_single_blog_view(const Blog &blog)
 
     document doc;
 
-    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("/views/html/single-blog.html");
+    std::string index_path = CPP_PROJECT_SOURCE_DIR + std::string("views/html/single-blog.html");
 
     std::string html;
 
