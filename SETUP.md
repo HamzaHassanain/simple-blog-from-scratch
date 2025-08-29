@@ -89,30 +89,19 @@ Open your browser and visit:
 - **Admin Panel**: http://localhost:8080/admin/login (admin/password)
 - **API**: http://localhost:8080/api/blogs
 
-## What You're Running
-
-Congratulations! You're now running a complete web application built entirely with our custom C++ framework stack:
-
-✅ **Custom HTTP Server** - No Apache, Nginx, or other web servers needed  
-✅ **Custom Web Framework** - No Express.js, Flask, or Django  
-✅ **Custom JSON Parser** - No external JSON libraries  
-✅ **Custom HTML Builder** - No template engines like Jinja or Handlebars  
-✅ **Custom Socket Layer** - Direct system socket programming
-
 ## Testing the Framework
 
-### Run the Test Suite
+### Run the Simple API Tests
 
 ```bash
 cd test
 npm install    # Install test dependencies
-npm test       # Run comprehensive tests
+node test_api.js
 ```
 
 The test suite will:
 
 - Test all API endpoints
-- Verify web page functionality
 - Run security tests
 - Measure performance metrics
 - Test concurrent request handling
@@ -219,23 +208,3 @@ article_elm->add_child(std::make_shared<element>("h2", blog.get_title()));
 
 **Issue**: Permission denied  
 **Solution**: Run with `sudo` on Linux/macOS if binding to port < 1024
-
-### Connection Issues
-
-**Issue**: Can't connect to localhost:8080  
-**Solution**: Check if the server started successfully and firewall settings
-
-## Next Steps
-
-1. **Explore the Code**: Browse through the controllers, models, and views
-2. **Modify Features**: Try adding new blog features
-3. **Study the Framework**: Look into the `library/` submodule to understand our framework
-4. **Build Your Own**: Use our framework to build your own web application
-5. **Contribute**: Help improve the framework or this example application
-
-## Framework Documentation
-
-For detailed framework documentation, visit:
-
-- **Main Framework**: https://github.com/HamzaHassanain/hamza-backend-web-library-cpp
-- **API Reference**: Check the framework's README and header files
