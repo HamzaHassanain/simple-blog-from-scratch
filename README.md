@@ -9,10 +9,10 @@ This project is a **simple blog application built from scratch** using our custo
 This simple blog application is designed to showcase the features and capabilities of our custom web framework stack:
 
 - **[Backend Web Library](https://github.com/HamzaHassanain/hamza-backend-web-library-cpp)** - The main web framework
-- **HTTP Server Library** - Custom HTTP server implementation
-- **JSON Parser Library** - Custom JSON parsing and generation
-- **HTML Builder Library** - Dynamic HTML generation
-- **Socket Library** - Low-level networking
+- **[HTTP Server Library](https://github.com/HamzaHassanain/hamza-http-server-lib)** - Custom HTTP server implementation
+- **[Socket Library](https://github.com/HamzaHassanain/hamza-socket-lib)** - Low-level networking
+- **[JSON Parser Library](https://github.com/HamzaHassanain/hamza-json-parser)** - Custom JSON parsing and generation
+- **[HTML Builder Library](https://github.com/HamzaHassanain/hamza-html-builder)** - Dynamic HTML generation
 
 **All libraries used in this project are custom-built and developed by us.** No external web frameworks (like Express.js, Flask, etc.) were used.
 
